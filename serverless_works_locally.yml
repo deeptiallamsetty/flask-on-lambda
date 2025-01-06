@@ -1,0 +1,49 @@
+service: flask-api
+
+provider:
+  environment:
+    DATABASE_URL: mysql+pymysql://admin:admin123@flask-db.cxac8gmue0ap.us-east-1.rds.amazonaws.com:3306/flaskdb
+    JWT_SECRET_KEY: 123456
+  name: aws
+  runtime: python3.9
+  region: us-east-1
+
+plugins:
+  - serverless-wsgi
+  - serverless-python-requirements
+
+custom:
+  wsgi:
+    app: app.app
+    packRequirements: false
+  pythonRequirements:
+    dockerizePip: false
+
+functions:
+  app:
+    handler: wsgi.handler
+    events:
+      - httpApi:
+          path: /refresh
+          method: POST    
+      - httpApi:
+          path: /login
+          method: POST
+      - httpApi:
+          path: /protected
+          method: GET
+      - httpApi:
+          path: /{proxy+}
+          method: ANY
+      - httpApi:
+          path: /todo
+          method: POST
+      - httpApi:
+          path: /todo
+          method: GET
+      - httpApi:
+          path: /todo/{task_id}
+          method: PUT
+      - httpApi:
+          path: /todo/{task_id}
+          method: DELETE          

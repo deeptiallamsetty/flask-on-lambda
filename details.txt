@@ -1,0 +1,76 @@
+docker build -t todo-app .
+
+$ aws ecr create-repository --repository-name todoapp
+{
+    "repository": {
+        "repositoryArn": "arn:aws:ecr:us-east-1:982534355171:repository/todoapp",
+        "registryId": "982534355171",
+        "repositoryName": "todoapp",
+        "repositoryUri": "982534355171.dkr.ecr.us-east-1.amazonaws.com/todoapp",
+        "createdAt": "2025-01-04T01:01:02.410000+04:00",
+        "imageTagMutability": "MUTABLE",
+        "imageScanningConfiguration": {
+            "scanOnPush": false
+        },
+        "encryptionConfiguration": {
+            "encryptionType": "AES256"
+        }
+    }
+}
+
+docker tag todoapp:latest 982534355171.dkr.ecr.us-east-1.amazonaws.com/todoapp:latest
+
+docker push 982534355171.dkr.ecr.us-east-1.amazonaws.com/todoapp:latest
+
+sls deploy
+
+aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 982534355171.dkr.ecr.us-east-1.amazonaws.com
+
+
+
+510  aws ecr create-repository --repository-name todoapp
+  511  docker build -t todo-app .
+  512  docker tag todoapp:latest 982534355171.dkr.ecr.us-east-1.amazonaws.com/todoapp:latest
+  513  docker build -t todoapp .
+  514  docker tag todoapp:latest 982534355171.dkr.ecr.us-east-1.amazonaws.com/todoapp:latest
+  515  docker push 982534355171.dkr.ecr.us-east-1.amazonaws.com/todoapp:latest
+  516  docker push 982534355171.dkr.ecr.us-east-1.amazonaws.com/todoapp:latest
+  517  aws ecr create-repository --repository-name todoapp
+  518  aws ecr get-login --region us-west-1
+  519  aws ecr get-login --region us-east-1
+  520  aws ecr get-login --no-include-email --region us-east-1
+  521  docker tag todoapp:latest 982534355171.dkr.ecr.us-east-1.amazonaws.com/todoapp:latest
+  522  docker push 982534355171.dkr.ecr.us-east-1.amazonaws.com/todoapp:latest
+  523  aws ecr get-login-password --region <region> | docker login --username AWS --password-stdin <account-id>.dkr.ecr.<region>.amazonaws.com
+  524  aws ecr get-login-password --region us-eat-1 | docker login --username AWS --password-stdin 982534355171.dkr.ecr.us-east-1.amazonaws.com
+  525  aws ecr get-login-password --region us-east-1 | docker login --username AWS --password-stdin 982534355171.dkr.ecr.us-east-1.amazonaws.com
+  526  docker push 982534355171.dkr.ecr.us-east-1.amazonaws.com/todoapp:latest
+  527  sls deploy
+  528  serverless remove
+
+
+  commands to create python virtual environment
+  python -m venv <venv_name>
+  source <venv_name>/bin/activate
+
+
+
+
+  aws-wsgi==0.2.7
+blinker==1.9.0
+click==8.1.8
+colorama==0.4.6
+Flask==3.1.0
+Flask-JWT-Extended==4.7.1
+flask-lambda==0.0.4
+Flask-SQLAlchemy==3.1.1
+greenlet==3.1.1
+itsdangerous==2.2.0
+Jinja2==3.1.5
+MarkupSafe==3.0.2
+PyJWT==2.10.1
+PyMySQL==1.1.1
+serverless-wsgi==3.0.5
+SQLAlchemy==2.0.36
+typing_extensions==4.12.2
+Werkzeug==3.1.3

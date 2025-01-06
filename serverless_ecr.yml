@@ -1,0 +1,23 @@
+service: flask-todo-docker
+
+provider:
+  name: aws
+  region: us-east-1
+  ecr:
+    images:
+      flask-todo-app:
+        path: .  # Path to Dockerfile
+  lambdaHashingVersion: 20201221
+
+functions:
+  app:
+    image:
+      name: flask-todo-app  # Ensure this matches the name of your Docker image
+    events:
+      - http:
+          path: /{proxy+}  # Catch all HTTP requests
+          method: any  # Accepts all HTTP methods (GET, POST, PUT, DELETE, etc.)
+          cors: true  # Enable CORS if required
+          
+#plugins:
+#  - serverless-offline  # Optional, if you want to test locally
