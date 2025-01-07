@@ -13,8 +13,13 @@ jobs:
       # Step 1: Checkout the repository
       - name: Checkout code
         uses: actions/checkout@v3
+    
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '18'
 
-      # Step 2: Log in to AWS ECR
+     # Step 2: Log in to AWS ECR
       - name: Log in to AWS ECR
         id: login-ecr
         uses: aws-actions/amazon-ecr-login@v2
@@ -37,11 +42,15 @@ jobs:
 
       # Step 5: Install dependencies
       - name: Install Serverless Framework
-        run: npm install -g serverless@3
+        run: |
+            npm install -g serverless@3
+            npm install serverless-wsgi
 
       - name: Install Project Dependencies
-        run: npm install
-
+        run: |
+            rm -rf node_modules package-lock.json
+            npm install fs-extra --save
+            
       # Step 6: Deploy to AWS Lambda
       - name: Deploy to AWS Lambda
         env:
