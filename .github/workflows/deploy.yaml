@@ -35,16 +35,15 @@ jobs:
         aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
         aws-region: us-east-1
 
-    - name: Authenticate Serverless Framework
-      env:
-          SERVERLESS_ACCESS_TOKEN: ${{ secrets.SERVERLESS_ACCESS_TOKEN }}
-      run: serverless config credentials --overwrite        
-
     - name: Build Docker image
       run: docker build -t todoapp .
 
     - name: Deploy with Serverless Framework
-      run: serverless deploy
+      env:
+        SERVERLESS_ACCESS_TOKEN: ${{ secrets.SERVERLESS_ACCESS_TOKEN }}
+      run: |
+        echo "Deploying using Serverless..."
+        serverless deploy
 
     - name: Post-deployment notification
       if: success()
