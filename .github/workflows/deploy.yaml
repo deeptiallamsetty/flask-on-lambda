@@ -34,14 +34,14 @@ jobs:
     - name: Clear NPM cache
       run: npm cache clean --force
 
-    - name: Install Node.js dependencies with debug logging
-      run: npm install --loglevel verbose
-
     - name: Reinstall Serverless Framework
       run: npm uninstall serverless && npm install serverless@latest
     
     - name: Reinstall Memoizee
       run: npm uninstall memoizee && npm install memoizee@latest
+
+    - name: Install Node.js dependencies with debug logging
+      run: npm install --loglevel verbose
 
     - name: Configure AWS credentials
       uses: aws-actions/configure-aws-credentials@v3
