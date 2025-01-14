@@ -3,6 +3,8 @@
   "version": "1.0.0",
   "main": "index.js",
   "dependencies": {
+    "serverless": "^3.0.0",
+    "memoizee": "^0.4.14",
     "serverless-wsgi": "^1.7.0",
     "serverless-python-requirements": "^5.1.0"
   },
