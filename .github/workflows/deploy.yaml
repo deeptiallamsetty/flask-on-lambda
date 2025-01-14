@@ -54,7 +54,7 @@ jobs:
     - name: Build Docker image
       run: |
         docker build -t todoapp .
-        docker tag my-todoapp:latest ${{ secrets.ECR_REPOSITORY }}:latest
+        docker tag todoapp:latest ${{ secrets.ECR_REPOSITORY }}:latest
 
     - name: Push to AWS ECR
       run: |
