@@ -2,7 +2,7 @@ service: todoapp
 #
 provider:
   environment:
-    DATABASE_URL: mysql+pymysql://admin:admin123@terraform-20250103204629740200000001.cxac8gmue0ap.us-east-1.rds.amazonaws.com:3306/flaskdb
+    DATABASE_URL: mysql+pymysql://admin:admin123@terraform-20250115051326433900000001.cxac8gmue0ap.us-east-1.rds.amazonaws.com:3306/flaskdb
     JWT_SECRET_KEY: 123456
   name: aws
   runtime: python3.9
