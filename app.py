@@ -14,7 +14,7 @@ def handler(event, context):
 
 app.config['SQLALCHEMY_DATABASE_URI'] = os.environ.get(
     'DATABASE_URL',
-    'mysql+pymysql://admin:admin123@terraform-20250103204629740200000001.cxac8gmue0ap.us-east-1.rds.amazonaws.com/flaskdb'
+    'mysql+pymysql://admin:admin123@terraform-20250116192216465000000001.cxac8gmue0ap.us-east-1.rds.amazonaws.com:3306/flaskdb'
 )
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 
