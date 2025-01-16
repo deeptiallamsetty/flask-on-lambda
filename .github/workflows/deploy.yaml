@@ -29,6 +29,9 @@ jobs:
       with:
         node-version: '22' # You can specify the version you need
     
+    - name: Install Node.js dependencies 
+      run: npm install        
+    
     - name: Install Docker
       run: |
           sudo apt-get update
